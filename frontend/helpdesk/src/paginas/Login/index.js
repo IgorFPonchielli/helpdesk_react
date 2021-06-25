@@ -11,7 +11,6 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { green } from '@material-ui/core/colors';
 import helpdeskImg from './helpdesk.png';
 
 function Copyright() {
@@ -19,7 +18,7 @@ function Copyright() {
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
             <Link color="inherit" href="https://material-ui.com/">
-                Igor Ponchielli
+                Helpdesk
       </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -32,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(8),
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     form: {
         width: '100%', // Fix IE 11 issue.
@@ -43,11 +42,11 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const theme = createMuiTheme({
-    palette: {
-        primary: green,
-    },
-});
+// const theme = createMuiTheme({
+//     palette: {
+//         primary: green,
+//     },
+// });
 
 
 export default function Login() {
@@ -109,8 +108,8 @@ export default function Login() {
                         control={<Checkbox value="remember" color="primary" />}
                         label="Manter conectado"
                     />
-                    <ThemeProvider theme={theme}>
-                        <Button
+                    <ThemeProvider>
+                        <Button className={classes.submit}
                             type="submit"
                             fullWidth
                             variant="contained"
