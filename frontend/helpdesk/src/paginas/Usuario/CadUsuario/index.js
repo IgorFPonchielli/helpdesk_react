@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'none',
     },
 }));
-export default function CadastroLivro() {
+export default function CadastroUsuario() {
 
     const classes = useStyles();
     const [NOME, setNome] = useState('');
@@ -93,7 +93,8 @@ export default function CadastroLivro() {
                                 <CardContent>
                                     <img src={ImgNoProfile} alt="Imagem de Perfil" width="120px" height="120px" />
                                 </CardContent>
-                                <CardActions >
+                                <Box display="flex" justifyContent="center">
+                                    <CardActions >
                                         <input
                                             accept="image/*"
                                             className={classes.input}
@@ -106,7 +107,8 @@ export default function CadastroLivro() {
                                                 Upload
                                             </Button>
                                         </label>
-                                </CardActions>
+                                    </CardActions>
+                                </Box>
                             </Card>
                         </Grid>
                         <Grid item xs={12} sm container spacing={1}>
