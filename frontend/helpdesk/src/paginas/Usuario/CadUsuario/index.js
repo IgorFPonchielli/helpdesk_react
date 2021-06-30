@@ -50,7 +50,7 @@ export default function CadastroUsuario() {
     const [EMAIL, setEmail] = useState('');
     const [SENHA, setSenha] = useState('');
     const [TELEFONE, setTelefone] = useState('');
-    const [TIPO, setTipo] = useState('');
+    const [id_tpouser, setTipo] = useState('');
     const [AREA, setArea] = useState('');
     const [LOCAL, setLocal] = useState('');
 
@@ -63,14 +63,14 @@ export default function CadastroUsuario() {
             EMAIL,
             SENHA,
             TELEFONE,
-            TIPO,
+            id_tpouser,
             AREA,
             LOCAL
         };
 
         try {
             console.log(dados);
-            const response = await api.post('user', dados);
+            const response = await api.post('usuario', dados);
             const id = response.data.id;
             console.log(response.data);
             alert("o id do usuario é " + id);
@@ -179,14 +179,14 @@ export default function CadastroUsuario() {
                                         id="TipoUsuario"
                                         multiline
                                         variant="outlined"
-                                        value={TIPO}
+                                        value={id_tpouser}
                                         onChange={e => setTipo(e.target.value)}
                                         label="Tipo de Usuario"
                                         margin="normal"
                                     >
-                                        <MenuItem value={10}>Administrador</MenuItem>
-                                        <MenuItem value={20}>Operador</MenuItem>
-                                        <MenuItem value={30}>Cliente</MenuItem>
+                                        <MenuItem value={1}>Administrador</MenuItem>
+                                        <MenuItem value={2}>Operador</MenuItem>
+                                        <MenuItem value={3}>Cliente</MenuItem>
                                     </Select>
                                 </FormControl>
                             </Grid>

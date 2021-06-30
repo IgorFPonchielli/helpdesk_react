@@ -7,5 +7,5 @@ const usuarioRoute = require('./route/usuarioRoute');
 app.use(express.json());
 app.use(cors());
 app.use(usuarioRoute);
-app.listen(3334);
+app.listen(3333);
 

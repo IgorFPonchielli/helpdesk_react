@@ -1,7 +1,6 @@
 const express = require('express');
-const { func } = require('../database/database');
-const router = express.Router();
 const usuarioService = require('../service/usuarioService');
+const router = express();
 
 router.get('/usuarios',async function(req,res){
     const usuarios = await usuarioService.getUsuarios();
@@ -24,4 +23,4 @@ router.post('/usuario',async function(req,res) {
     res.json(newUsuario);
 });
 
-module.exports =router;
+module.exports = router;
