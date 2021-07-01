@@ -45,9 +45,18 @@ export default function ListarChamados() {
     async function handleDeleteChamado(id) {
         try {
             await api.delete(`chamado/${id}`, {});
-            setChamados(chamados.filter(chamado => chamado.Codigo !== id));
+            setChamados(chamados.filter(chamado => chamado.id !== id));
         } catch (error) {
             alert('Erro ao deletar chamado');
+        }
+    }
+
+    async function handleUpdateChamado(id) {
+        try {
+            await api.put(`chamado/${id}`, {});
+            setChamados(chamados.filter(chamado => chamado.id !== id));
+        } catch (error) {
+            alert('Erro ao atualizar chamado');
         }
     }
 
@@ -73,16 +82,18 @@ export default function ListarChamados() {
                 </TableHead>
                 <TableBody>
                     {chamados.map((chamado) => (
-                        <StyledTableRow key={chamado.Codigo}>
+                        <StyledTableRow key={chamado.id}>
                             <StyledTableCell component="th" scope="row">
-                                {chamado.Codigo}
+                                {chamado.id}
                             </StyledTableCell>
-                            <StyledTableCell align="right">{chamado.NomeAutor}</StyledTableCell>
-                            <StyledTableCell align="right">{chamado.CodigoEditora}</StyledTableCell>
-                            <StyledTableCell align="right">{chamado.ISBN}</StyledTableCell>
-                            <StyledTableCell align="right">{chamado.Assunto}</StyledTableCell>
+                            <StyledTableCell align="right">{chamado.titulo}</StyledTableCell>
+                            <StyledTableCell align="right">{chamado.STATUS}</StyledTableCell>
+                            <StyledTableCell align="right">{chamado.categoria}</StyledTableCell>
+                            <StyledTableCell align="right">{chamado.usuario}</StyledTableCell>
+                            <StyledTableCell align="right">{chamado.prioridade}</StyledTableCell>
                             <StyledTableCell align="center">
-                            <Button variant="outlined" color="secondary" type="button" onClick={() => handleDeleteChamado(chamado.Codigo)}>Excluir</Button></StyledTableCell >
+                            <Button variant="outlined" color="secondary" type="button" onClick={() => handleDeleteChamado(chamado.Codigo)}>Excluir</Button>
+                            <Button variant="outlined" color="secondary" type="button" onClick={() => handleUpdateChamado(chamado.Codigo)}>Atualizar</Button></StyledTableCell >
                         </StyledTableRow>
                     ))}
                 </TableBody>
