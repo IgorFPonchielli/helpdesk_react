@@ -1,0 +1,115 @@
+//Banco Postgres
+CREATE TABLE public."SequelizeMeta" (
+	"name" varchar(255) NOT NULL,
+	CONSTRAINT "SequelizeMeta_pkey" PRIMARY KEY (name)
+);
+
+
+CREATE TABLE public.categorias (
+	"CATEGORIA" varchar(255) NULL,
+	id serial NOT NULL,
+	CONSTRAINT "CATEGORIA_PKEY" PRIMARY KEY (id)
+);
+
+CREATE TABLE public.prioridade (
+	id int4 NOT NULL,
+	"DESCRICAO" varchar(255) NULL,
+	CONSTRAINT prioridade_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE public.chamados (
+	"STATUS" varchar(255) NULL,
+	id serial NOT NULL,
+	idcategoria int4 NULL,
+	id_usuario int4 NOT NULL,
+	id_prioridade int4 NOT NULL,
+	titulo varchar(255) NULL,
+	descricao varchar(255) NULL,
+	CONSTRAINT chamados_pkey PRIMARY KEY (id)
+);
+
+
+CREATE TABLE public.usuario (
+	"NOME" varchar(40) NULL,
+	"SOBRENOME" varchar(40) NULL,
+	"EMAIL" varchar(50) NULL,
+	"TELEFONE" varchar(15) NOT NULL,
+	"AREA" varchar(50) NULL,
+	"LOCAL" varchar(100) NULL,
+	"SENHA" varchar(100) NOT NULL,
+	id serial NOT NULL,
+	data_atualizacao date NULL,
+	id_tpouser int4 NOT NULL,
+	CONSTRAINT "USUARIO_PKEY" PRIMARY KEY (id)
+);
+
+
+-- public.chamados foreign keys
+
+ALTER TABLE public.chamados ADD CONSTRAINT fk_categorias FOREIGN KEY (idcategoria) REFERENCES categorias(id);
+ALTER TABLE public.chamados ADD CONSTRAINT fk_prioridade FOREIGN KEY (id_prioridade) REFERENCES prioridade(id);
+ALTER TABLE public.chamados ADD CONSTRAINT fk_usuario FOREIGN KEY (id_usuario) REFERENCES usuario(id);
+
+
+
+CREATE TABLE public.conhecimento (
+	"DESCRICAO" varchar(255) NULL,
+	id serial NOT NULL,
+	idchamado int4 NULL,
+	CONSTRAINT conhecimento_pkey PRIMARY KEY (id)
+);
+
+
+-- public.conhecimento foreign keys
+
+ALTER TABLE public.conhecimento ADD CONSTRAINT fk_chamado FOREIGN KEY (idchamado) REFERENCES chamados(id);
+
+
+
+-- public.usuario definition
+
+-- Drop table
+
+-- DROP TABLE public.usuario;
+
+
+-- public.usuario foreign keys
+
+CREATE TABLE public.tipo_usuario (
+	id serial NOT NULL,
+	"DESCRICAO_USER" varchar(100) NULL,
+	CONSTRAINT tipo_usuario_pkey PRIMARY KEY (id)
+);
+
+ALTER TABLE public.usuario ADD CONSTRAINT fk_tpouser FOREIGN KEY (id_tpouser) REFERENCES public.tipo_usuario(id);
+
+alter table public.livro_teste2 alter autor type VARCHAR(100);
+alter table public.livro_teste2 alter CREATED_AT type DATE;
+
+
+	INSERT INTO helpdesk.tipo_usuario
+("DESCRICAO_USER")
+VALUES('admin');
+
+INSERT INTO helpdesk.tipo_usuario
+("DESCRICAO_USER")
+VALUES('agente');
+
+
+INSERT INTO helpdesk.tipo_usuario
+("DESCRICAO_USER")
+VALUES('user');
+
+
+INSERT INTO public.usuario
+("NOME", "SOBRENOME", "EMAIL", "TELEFONE", "AREA", "LOCAL", "SENHA", data_atualizacao, id_tpouser)
+VALUES('Roberto', 'Dinamite', 'roberto_dinamite@vascao.com.br', '3387-0172','Administrativa', 'Pomerode-Escritório', '123', CURRENT_DATE, 1);
+
+	INSERT INTO public.usuario
+("NOME", "SOBRENOME", "EMAIL", "TELEFONE", "AREA", "LOCAL", "SENHA", data_atualizacao, id_tpouser)
+VALUES('Roberto', 'Carlos', 'carlos@dinamite.com.br','999796262', 'Administrativa', 'Pomerode-Fundos', '123', CURRENT_DATE, 2);
+
+
+INSERT INTO public.usuario
+("NOME", "SOBRENOME", "EMAIL", "TELEFONE", "AREA", "LOCAL", "SENHA", data_atualizacao, id_tpouser)
+VALUES('Antonio', 'Varela', 'toninho@vascao.com.br', '999745625','Operacional', 'Pomerode-Producao', '123', CURRENT_DATE, 3);
