@@ -63,11 +63,12 @@ export default function ListarChamados() {
                 <TableHead>
                     <TableRow>
                         <StyledTableCell>Codigo</StyledTableCell>
-                        <StyledTableCell align="right">Autor</StyledTableCell>
-                        <StyledTableCell align="right">Codigo da Editora</StyledTableCell>
-                        <StyledTableCell align="right">ISBN</StyledTableCell>
-                        <StyledTableCell align="right">Assunto</StyledTableCell>
-                        <StyledTableCell align="right">Deletar</StyledTableCell>
+                        <StyledTableCell align="right">Titulo</StyledTableCell>
+                        <StyledTableCell align="right">Status</StyledTableCell>
+                        <StyledTableCell align="right">Categoria</StyledTableCell>
+                        <StyledTableCell align="right">Usuario</StyledTableCell>
+                        <StyledTableCell align="right">Prioridade</StyledTableCell>
+                        <StyledTableCell align="right">Ação</StyledTableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

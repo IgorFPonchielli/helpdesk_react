@@ -7,7 +7,7 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Navbar />
+    {/* <Navbar /> */}
     <Route />
   </React.StrictMode>,
   document.getElementById('root')

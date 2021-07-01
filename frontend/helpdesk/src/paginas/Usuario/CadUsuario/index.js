@@ -115,6 +115,7 @@ export default function CadastroUsuario() {
                             <Grid item xs={12} sm={6}>
                                 <FormControl fullWidth className={classes.margin}>
                                     <TextField
+                                        required
                                         id="Nome"
                                         label="Nome"
                                         placeholder="Digite o primeiro nome"
@@ -129,6 +130,7 @@ export default function CadastroUsuario() {
                             <Grid item xs={12} sm={6}>
                                 <FormControl fullWidth className={classes.margin}>
                                     <TextField
+                                        required
                                         id="Sobrenome"
                                         label="Sobrenome"
                                         placeholder="Digite apenas o Sobrenome"
@@ -143,6 +145,7 @@ export default function CadastroUsuario() {
                             <Grid item xs={12} sm={6}>
                                 <FormControl fullWidth className={classes.margin}>
                                     <TextField
+                                        required
                                         id="Email"
                                         label="E-mail"
                                         placeholder="meuemail@email.com"
@@ -157,16 +160,17 @@ export default function CadastroUsuario() {
                             <Grid item xs={12} sm={6}>
                                 <FormControl fullWidth className={classes.margin}>
                                     <TextField
-                                        id="Senha"
-                                        label="Senha"
-                                        placeholder="Digite uma senha para seu usuario"
-                                        multiline
                                         variant="outlined"
+                                        margin="normal"
+                                        required
+                                        fullWidth
+                                        name="senha"
+                                        label="Senha"
+                                        type="password"
+                                        id="SENHA"
+                                        autoComplete="current-password"
                                         value={SENHA}
                                         onChange={e => setSenha(e.target.value)}
-                                        type="password"
-                                        autoComplete="current-password"
-                                        margin="normal"
                                     />
                                 </FormControl>
                             </Grid>
@@ -175,6 +179,7 @@ export default function CadastroUsuario() {
                                 <FormControl fullWidth variant="outlined" margin="normal" className={classes.margin}>
                                     <InputLabel id="Tipo">Tipo de Usuario</InputLabel>
                                     <Select
+                                        required
                                         labelId="Tipo"
                                         id="TipoUsuario"
                                         multiline
@@ -185,8 +190,8 @@ export default function CadastroUsuario() {
                                         margin="normal"
                                     >
                                         <MenuItem value={1}>Administrador</MenuItem>
-                                        <MenuItem value={2}>Operador</MenuItem>
-                                        <MenuItem value={3}>Cliente</MenuItem>
+                                        <MenuItem value={2}>Agente</MenuItem>
+                                        <MenuItem value={3}>Usuário</MenuItem>
                                     </Select>
                                 </FormControl>
                             </Grid>
