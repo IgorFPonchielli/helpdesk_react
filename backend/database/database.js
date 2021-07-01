@@ -1,10 +1,10 @@
-const pgp =require('pg-promise')();
+const pgp = require('pg-promise')();
 const db = pgp({
     user: 'postgres',
     password: 'postgres',
-    host:'localhost',
+    host: 'localhost',
     port: 5432,
     database: 'postgres'
 });
 
-module.exports =db;
+module.exports = db;
