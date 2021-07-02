@@ -3,12 +3,12 @@ const chamadoService = require('../service/chamadoService');
 const router = express();
 
 router.get('/chamados',async function(req,res){
-    const chamados = await chamadoService.getUsuarios();
+    const chamados = await chamadoService.getChamados();
     res.json(chamados);
 });
 
 router.get("/chamado/:id",async function(req,res){
-    const chamado = await chamadoService.getUsuario(req.params.id);
+    const chamado = await chamadoService.getChamado(req.params.id);
     res.json(chamado);
  
 });

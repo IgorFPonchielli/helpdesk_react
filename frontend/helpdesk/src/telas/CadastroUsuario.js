@@ -12,7 +12,7 @@ const schema = Yup.object().shape({
     senha: Yup.string().required()
 })
 
-function CadastroUsuario() {
+function CadUsuario() {
 
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
@@ -158,4 +158,4 @@ function CadastroUsuario() {
     );
 }
 
-export default CadastroUsuario;
+export default CadUsuario;

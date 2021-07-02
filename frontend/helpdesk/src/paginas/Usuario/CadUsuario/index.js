@@ -17,6 +17,18 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Box from '@material-ui/core/Box';
 
+import validator from 'validator';
+//import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+
+const schema = Yup.object().shape({
+    nome: Yup.string().required(),
+    email: Yup.string().required(),
+    endereco: Yup.string().required(),
+    telefone: Yup.number().min(16).required(),
+    senha: Yup.string().required()
+})
+
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -48,6 +60,16 @@ export default function CadastroUsuario() {
     const [NOME, setNome] = useState('');
     const [SOBRENOME, setSobrenome] = useState('');
     const [EMAIL, setEmail] = useState('');
+    const [ERROEMAIL, setErroEmail] = useState('')
+    const validarEmail = (e) => {
+        var email = e.target.value
+
+        if (validator.isEmail(email)) {
+            setErroEmail('E-mail válido')
+        } else {
+            setErroEmail('Entre um E-mail válido!')
+        }
+    }
     const [SENHA, setSenha] = useState('');
     const [TELEFONE, setTelefone] = useState('');
     const [id_tpouser, setTipo] = useState('');
@@ -149,9 +171,14 @@ export default function CadastroUsuario() {
                                         multiline
                                         variant="outlined"
                                         value={EMAIL}
+                                        onBlur={e => { validarEmail(e) }}
                                         onChange={e => setEmail(e.target.value)}
                                         margin="normal"
                                     />
+                                    <span style={{
+                                        fontWeight: 'bold',
+                                        color: 'red'
+                                    }}>{ERROEMAIL}</span>
                                 </FormControl>
                             </Grid>
                             <Grid item xs={12} sm={6}>
@@ -196,6 +223,7 @@ export default function CadastroUsuario() {
                                         id="Telefone"
                                         label="Telefone"
                                         placeholder="+55 00 999999999"
+                                        pattern="+[0-9]{2} [0-9]{2} [0-9]{5}-[0-9]{4}"
                                         multiline
                                         variant="outlined"
                                         value={TELEFONE}

@@ -6,9 +6,6 @@ exports.getChamados = function(){
 exports.getChamado = function(chamadoID){
     return chamadoData.getChamado(chamadoID);
 }
-exports.deleteChamado = function(chamadoID){
-    return chamadoData.getChamado(chamadoID);
-}
 exports.saveChamado = function(chamado){
     return chamadoData.saveChamado(chamado);
 }
