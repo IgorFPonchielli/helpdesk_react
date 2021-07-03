@@ -10,7 +10,7 @@ exports.getUsuarios = function(){
 }
 
 exports.saveUsuario = function(usuario){
-    return database.one('insert into usuario ("NOME", "SOBRENOME", "EMAIL", "TELEFONE", "AREA", "LOCAL", "SENHA", "data_atualizacao", "id_tpouser") values ($1,$2,$3,$4,$5,$6,$7,$8,$9) returning *',
+    return database.one('insert into usuario (NOME, SOBRENOME, EMAIL, TELEFONE, AREA, LOCAL, SENHA, data_atualizacao, id_tpouser) values ($1,$2,$3,$4,$5,$6,$7,$8,$9) returning *',
     [usuario.NOME, usuario.SOBRENOME, usuario.EMAIL, usuario.TELEFONE, usuario.AREA, usuario.LOCAL, md5(usuario.SENHA),
         usuario.data_atualizacao, usuario.id_tpouser]);
 }
