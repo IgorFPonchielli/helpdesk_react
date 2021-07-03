@@ -45,21 +45,20 @@ const useStyles = makeStyles((theme) => ({
 export default function Login() {
     
     const classes = useStyles();
-    const [Email, getEmail] = useState('');
-    const [Senha, getSenha] = useState('');
+    const [EMAIL, getEmail] = useState('');
+    const [SENHA, getSenha] = useState('');
 
     async function handleLogin(e) {
         e.preventDefault();
 
         const dados = {
-            Email,
-            Senha
+            EMAIL,
+            SENHA
         };
 
         try {
-            console.log(dados);
-            const response = await api.get('login', dados);
-            console.log(response.data.nome);
+            const response = await api.post('login', dados);
+            alert("Login valido! Status: " + response.status);
         } catch (error) {
             alert("Login Invalido " + error.message);
         }
@@ -81,7 +80,7 @@ export default function Login() {
                         name="email"
                         autoComplete="email"
                         autoFocus
-                        value={Email}
+                        value={EMAIL}
                         onChange={e => getEmail(e.target.value)}
                     />
                     <TextField
@@ -94,7 +93,7 @@ export default function Login() {
                         type="password"
                         id="senha"
                         autoComplete="current-password"
-                        value={Senha}
+                        value={SENHA}
                         onChange={e => getSenha(e.target.value)}
                     />
                     <FormControlLabel
