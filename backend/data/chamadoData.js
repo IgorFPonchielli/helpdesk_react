@@ -1,15 +1,14 @@
 const database = require('../database/database');
 
 exports.getChamado = function(chamadoID){
-    return database.query('select * from chamado where id = $1',[chamadoID]);
+    return database.query('select * from chamados where id = $1',[chamadoID]);
 }
 
 exports.getChamados = function(){
-    return database.query('select * from chamado');
+    return database.query('select * from chamados');
 }
 
 exports.saveChamado = function(chamado){
-    return database.one('insert into chamado ("NOME", "SOBRENOME", "EMAIL", "TELEFONE", "AREA", "LOCAL", "SENHA", "data_atualizacao", "id_tpouser") values ($1,$2,$3,$4,$5,$6,$7,$8,$9) returning *',
-    [chamado.NOME, chamado.SOBRENOME, chamado.EMAIL, chamado.TELEFONE, chamado.AREA, chamado.LOCAL, md5(chamado.SENHA),
-        chamado.data_atualizacao, chamado.id_tpouser]);
+    return database.one("insert into chamados (STATUS, idcategoria, id_usuario, id_prioridade, titulo, descricao) values ('Aberto',$1,(select id from usuario where email = $2),$3,$4,$5) returning *",
+    [chamado.idcategoria, chamado.id_usuario, chamado.id_prioridade, chamado.titulo, chamado.descricao]);
 }
