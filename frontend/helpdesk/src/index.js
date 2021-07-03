@@ -1,13 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Navbar from './paginas/Navbar';
 import Route from './route';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <Navbar /> */}
     <Route />
   </React.StrictMode>,
   document.getElementById('root')

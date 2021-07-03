@@ -150,7 +150,7 @@ export default function CadastroChamado() {
                                         margin="normal"
                                     >
                                         {categorias.map((categoria) => (
-                                            <MenuItem value={categoria.id}>{categoria.CATEGORIA}</MenuItem>
+                                            <MenuItem value={categoria.id}>{categoria.categoria}</MenuItem>
                                         ))}
                                     </Select>
                                 </FormControl>
@@ -162,7 +162,7 @@ export default function CadastroChamado() {
                                     placeholder="Descreva seu chamado aqui"
                                     variant="outlined"
                                     value={descricao}
-                                    onChange={e => setCategoria(e.target.value)}
+                                    onChange={e => setDescricao(e.target.value)}
                                     label="Descrição"
                                 />
                                 </FormControl>
