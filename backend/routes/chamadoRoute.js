@@ -7,6 +7,11 @@ router.get('/chamados',async function(req,res){
     res.json(chamados);
 });
 
+router.get('/chamados/detail',async function(req,res){
+    const chamados = await chamadoService.getChamadosDetail();
+    res.json(chamados);
+});
+
 router.get("/chamado/:id",async function(req,res){
     const chamado = await chamadoService.getChamado(req.params.id);
     res.json(chamado);

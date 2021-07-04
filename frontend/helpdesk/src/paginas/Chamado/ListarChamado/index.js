@@ -9,9 +9,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-
-// instalar axios: npm install axios
-// criar componente para listar livros
+import SaveIcon from '@material-ui/icons/Save';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -20,6 +19,9 @@ const StyledTableCell = withStyles((theme) => ({
     },
     body: {
         fontSize: 14,
+    },
+    button: {
+        margin: theme.spacing(1)
     },
 }))(TableCell);
 
@@ -72,12 +74,12 @@ export default function ListarChamados() {
                 <TableHead>
                     <TableRow>
                         <StyledTableCell>Codigo</StyledTableCell>
-                        <StyledTableCell align="right">Titulo</StyledTableCell>
-                        <StyledTableCell align="right">Status</StyledTableCell>
-                        <StyledTableCell align="right">Categoria</StyledTableCell>
-                        <StyledTableCell align="right">Usuario</StyledTableCell>
-                        <StyledTableCell align="right">Prioridade</StyledTableCell>
-                        <StyledTableCell align="right">Ação</StyledTableCell>
+                        <StyledTableCell align="left">Titulo</StyledTableCell>
+                        <StyledTableCell align="left">Status</StyledTableCell>
+                        <StyledTableCell align="left">Categoria</StyledTableCell>
+                        <StyledTableCell align="left">Usuario</StyledTableCell>
+                        <StyledTableCell align="left">Prioridade</StyledTableCell>
+                        <StyledTableCell align="center">Ação</StyledTableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -86,14 +88,29 @@ export default function ListarChamados() {
                             <StyledTableCell component="th" scope="row">
                                 {chamado.id}
                             </StyledTableCell>
-                            <StyledTableCell align="right">{chamado.titulo}</StyledTableCell>
-                            <StyledTableCell align="right">{chamado.STATUS}</StyledTableCell>
-                            <StyledTableCell align="right">{chamado.categoria}</StyledTableCell>
-                            <StyledTableCell align="right">{chamado.usuario}</StyledTableCell>
-                            <StyledTableCell align="right">{chamado.prioridade}</StyledTableCell>
+                            <StyledTableCell align="left">{chamado.titulo}</StyledTableCell>
+                            <StyledTableCell align="left">{chamado.status}</StyledTableCell>
+                            <StyledTableCell align="left">{chamado.categoria}</StyledTableCell>
+                            <StyledTableCell align="left">{chamado.email}</StyledTableCell>
+                            <StyledTableCell align="left">{chamado.prioridade}</StyledTableCell>
                             <StyledTableCell align="center">
-                            <Button variant="outlined" color="secondary" type="button" onClick={() => handleDeleteChamado(chamado.Codigo)}>Excluir</Button>
-                            <Button variant="outlined" color="secondary" type="button" onClick={() => handleUpdateChamado(chamado.Codigo)}>Atualizar</Button></StyledTableCell >
+                                <Button
+                                    variant="contained"
+                                    color="secondary"
+                                    size="small"
+                                    className={classes.button}
+                                    startIcon={<DeleteIcon />} 
+                                    onClick={() => handleDeleteChamado(chamado.Codigo)}
+                                    >Deletar</Button>
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    size="small"
+                                    className={classes.button}
+                                    startIcon={<SaveIcon />} 
+                                    onClick={() => handleUpdateChamado(chamado.Codigo)}
+                                    >Salvar</Button>
+                            </StyledTableCell >
                         </StyledTableRow>
                     ))}
                 </TableBody>

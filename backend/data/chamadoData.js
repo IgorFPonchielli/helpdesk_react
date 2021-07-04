@@ -8,6 +8,13 @@ exports.getChamados = function(){
     return database.query('select * from chamados');
 }
 
+exports.getChamadosDetail = function(){
+    return database.query(`select chamados.id, chamados.status, categorias.categoria, usuario.email, prioridade.descricao as prioridade, titulo, chamados.descricao from chamados
+                            inner join categorias on categorias.id = idcategoria
+                            inner join usuario on usuario.id = id_usuario
+                            inner join prioridade on prioridade.id = id_prioridade;`);
+}
+
 exports.saveChamado = function(chamado){
     return database.one("insert into chamados (STATUS, idcategoria, id_usuario, id_prioridade, titulo, descricao) values ('Aberto',$1,(select id from usuario where email = $2),$3,$4,$5) returning *",
     [chamado.idcategoria, chamado.id_usuario, chamado.id_prioridade, chamado.titulo, chamado.descricao]);
