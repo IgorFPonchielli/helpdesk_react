@@ -11,6 +11,9 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Container from '@material-ui/core/Container';
+import Header from '../../Main/Header';
+import Footer from '../../Main/Footer';
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -69,6 +72,8 @@ export default function ListarChamados() {
     }, []);
 
     return (
+        <Container maxWidth="lg">   
+        <Header title="Chamados"/> 
         <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="customized table">
                 <TableHead>
@@ -116,5 +121,7 @@ export default function ListarChamados() {
                 </TableBody>
             </Table>
         </TableContainer>
+        <Footer />
+        </Container>
     );
 }

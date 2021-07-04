@@ -4,7 +4,8 @@ import CadUsuario from './paginas/Usuario/CadUsuario'
 import EditUsuario from './paginas/Usuario/EditUsuario'
 import ListarChamados from './paginas/Chamado/ListarChamado'
 import CadChamados from './paginas/Chamado/CadChamado';
-import Login from './paginas/Login'
+import Login from './paginas/Login';
+import Home from './paginas/Home';
 
 function Routes() {
     return (
@@ -16,6 +17,7 @@ function Routes() {
                 <Route path="/chamado/listar" component={ListarChamados}/>
                 <Route path="/chamado/cad" component={CadChamados}/>
                 <Route path="/login" component={Login}/>
+                <Route path="/home" component={Home}/>
             </Switch>
         </BrowserRouter>
     )

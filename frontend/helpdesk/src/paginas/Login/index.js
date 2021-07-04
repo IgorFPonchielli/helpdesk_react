@@ -7,24 +7,11 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import helpdeskImg from './helpdesk.png';
-
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright © '}
-            <Link color="inherit" href="https://material-ui.com/">
-                Helpdesk
-      </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
+import Footer from '../Main/Footer';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -59,6 +46,7 @@ export default function Login() {
         try {
             const response = await api.post('login', dados);
             alert("Login valido! Status: " + response.status);
+            window.open("/home", "_self")
         } catch (error) {
             alert("Login Invalido " + error.message);
         }
@@ -124,9 +112,7 @@ export default function Login() {
                     </Grid>
                 </form>
             </div>
-            <Box mt={8}>
-                <Copyright />
-            </Box>
+            <Footer />
         </Container>
     );
 }

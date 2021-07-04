@@ -16,6 +16,8 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Box from '@material-ui/core/Box';
+import Header from '../../Main/Header';
+import Footer from '../../Main/Footer';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -42,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'none',
     },
 }));
+
 export default function CadastroUsuario() {
 
     const classes = useStyles();
@@ -83,8 +86,8 @@ export default function CadastroUsuario() {
     return (
         <React.Fragment>
             <CssBaseline />
-            <Container maxWidth="md">
-                <h1>Cadastrar Usuario</h1>
+            <Container maxWidth="lg">
+                <Header title="Cadastrar Usuario"/> 
                 <form onSubmit={handleCadastro}>
                     <Grid container spacing={2}>
                         <Grid item>
@@ -255,6 +258,7 @@ export default function CadastroUsuario() {
                     </Grid>
 
                 </form>
+                <Footer/>
             </Container>
         </React.Fragment>
     );

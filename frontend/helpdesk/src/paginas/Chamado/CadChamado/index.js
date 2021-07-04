@@ -12,6 +12,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import Header from '../../Main/Header';
+import Footer from '../../Main/Footer';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -38,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'none',
     },
 }));
+
 export default function CadastroChamado() {
 
     const classes = useStyles();
@@ -80,8 +83,8 @@ export default function CadastroChamado() {
     return (
         <React.Fragment>
             <CssBaseline />
-            <Container maxWidth="md">
-                <h1>Cadastrar Chamado</h1>
+            <Container maxWidth="lg">            
+            <Header title="Cadastrar Chamado"/> 
                 <form onSubmit={handleCadastro}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm container spacing={1}>
@@ -184,6 +187,7 @@ export default function CadastroChamado() {
                     </Grid>
 
                 </form>
+                <Footer />
             </Container>
         </React.Fragment>
     );
