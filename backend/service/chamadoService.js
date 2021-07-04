@@ -4,8 +4,12 @@ exports.getChamados = function(){
     return chamadoData.getChamados();
 }
 
-exports.getChamados = function(){
+exports.getChamadosDetail = function(){
     return chamadoData.getChamadosDetail();
+}
+
+exports.deleteChamado = function(chamadoID) {
+    return chamadoData.deleteChamado(chamadoID);
 }
 
 exports.getChamado = function(chamadoID){

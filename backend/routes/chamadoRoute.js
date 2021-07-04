@@ -18,8 +18,9 @@ router.get("/chamado/:id",async function(req,res){
  
 });
 
-router.delete('/chamado/:id',async function(req,res){
-   return res.json([{message:'registro excluido com sucesso'}]); 
+router.delete('/chamado/:id', async function(req, res) {
+    await chamadoService.deleteChamado(req.params.id);
+    return res.json([{message: 'registro excluido com sucesso'}])
 });
 
 router.post('/chamado',async function(req,res) {

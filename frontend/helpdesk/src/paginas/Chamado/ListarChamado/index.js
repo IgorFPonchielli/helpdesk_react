@@ -66,7 +66,7 @@ export default function ListarChamados() {
     }
 
     useEffect(() => {
-        api.get('chamados', {}).then(response => {
+        api.get('chamados/detail', {}).then(response => {
             setChamados(response.data);
         });
     }, []);
@@ -105,7 +105,7 @@ export default function ListarChamados() {
                                     size="small"
                                     className={classes.button}
                                     startIcon={<DeleteIcon />} 
-                                    onClick={() => handleDeleteChamado(chamado.Codigo)}
+                                    onClick={() => handleDeleteChamado(chamado.id)}
                                     >Deletar</Button>
                                 <Button
                                     variant="contained"
@@ -113,7 +113,7 @@ export default function ListarChamados() {
                                     size="small"
                                     className={classes.button}
                                     startIcon={<SaveIcon />} 
-                                    onClick={() => handleUpdateChamado(chamado.Codigo)}
+                                    onClick={() => handleUpdateChamado(chamado.id)}
                                     >Salvar</Button>
                             </StyledTableCell >
                         </StyledTableRow>
