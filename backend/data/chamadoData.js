@@ -8,6 +8,10 @@ exports.getChamados = function(){
     return database.query('select * from chamados');
 }
 
+exports.updateChamado = function(chamado){
+    return database.query("update chamados SET status = $1 where id = $2", [chamado.status, chamado.id]);
+}
+
 exports.getChamadosDetail = function(){
     return database.query(`select chamados.id, chamados.status, categorias.categoria, usuario.email, prioridade.descricao as prioridade, titulo, chamados.descricao from chamados
                             inner join categorias on categorias.id = idcategoria

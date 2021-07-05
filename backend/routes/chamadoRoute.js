@@ -23,6 +23,13 @@ router.delete('/chamado/:id', async function(req, res) {
     return res.json([{message: 'registro excluido com sucesso'}])
 });
 
+router.put('/chamado/:id', async function(req, res) {
+    const chamado = req.body;
+    console.log(chamado)
+    await chamadoService.updateChamado(chamado);
+    return res.json([{message: 'status atualizado com sucesso'}])
+});
+
 router.post('/chamado',async function(req,res) {
     const chamado = req.body;
     const newChamado = await chamadoService.saveChamado(chamado);

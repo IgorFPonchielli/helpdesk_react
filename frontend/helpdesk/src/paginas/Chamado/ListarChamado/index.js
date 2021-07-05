@@ -12,6 +12,8 @@ import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Container from '@material-ui/core/Container';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 import Header from '../../Main/Header';
 import Footer from '../../Main/Footer';
 
@@ -46,6 +48,7 @@ export default function ListarChamados() {
     const classes = useStyles();
 
     const [chamados, setChamados] = useState([]);
+    const [status, setStatus] = useState([]);
 
     async function handleDeleteChamado(id) {
         try {
@@ -56,12 +59,19 @@ export default function ListarChamados() {
         }
     }
 
-    async function handleUpdateChamado(id) {
+    async function handleUpdateChamado(chamado, status) {
+
+        // const dados = {
+        //     status
+        // };
+
         try {
-            await api.put(`chamado/${id}`, {});
-            setChamados(chamados.filter(chamado => chamado.id !== id));
+            console.log(chamado);
+            await api.put(`chamado/${chamado.id}`);
+            console.log(status);
+            alert("o id do chamado é " + chamado.id);
         } catch (error) {
-            alert('Erro ao atualizar chamado');
+            alert("Erro ao atualizar chamado " + error.message);
         }
     }
 
@@ -72,56 +82,68 @@ export default function ListarChamados() {
     }, []);
 
     return (
-        <Container maxWidth="lg">   
-        <Header title="Chamados"/> 
-        <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="customized table">
-                <TableHead>
-                    <TableRow>
-                        <StyledTableCell>Codigo</StyledTableCell>
-                        <StyledTableCell align="left">Titulo</StyledTableCell>
-                        <StyledTableCell align="left">Status</StyledTableCell>
-                        <StyledTableCell align="left">Categoria</StyledTableCell>
-                        <StyledTableCell align="left">Usuario</StyledTableCell>
-                        <StyledTableCell align="left">Prioridade</StyledTableCell>
-                        <StyledTableCell align="center">Ação</StyledTableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {chamados.map((chamado) => (
-                        <StyledTableRow key={chamado.id}>
-                            <StyledTableCell component="th" scope="row">
-                                {chamado.id}
-                            </StyledTableCell>
-                            <StyledTableCell align="left">{chamado.titulo}</StyledTableCell>
-                            <StyledTableCell align="left">{chamado.status}</StyledTableCell>
-                            <StyledTableCell align="left">{chamado.categoria}</StyledTableCell>
-                            <StyledTableCell align="left">{chamado.email}</StyledTableCell>
-                            <StyledTableCell align="left">{chamado.prioridade}</StyledTableCell>
-                            <StyledTableCell align="center">
-                                <Button
-                                    variant="contained"
-                                    color="secondary"
-                                    size="small"
-                                    className={classes.button}
-                                    startIcon={<DeleteIcon />} 
-                                    onClick={() => handleDeleteChamado(chamado.id)}
+        <Container maxWidth="lg">
+            <Header title="Chamados" />
+            <TableContainer component={Paper}>
+                <Table className={classes.table} aria-label="customized table">
+                    <TableHead>
+                        <TableRow>
+                            <StyledTableCell>Codigo</StyledTableCell>
+                            <StyledTableCell align="left">Titulo</StyledTableCell>
+                            <StyledTableCell align="left">Status</StyledTableCell>
+                            <StyledTableCell align="left">Categoria</StyledTableCell>
+                            <StyledTableCell align="left">Usuario</StyledTableCell>
+                            <StyledTableCell align="left">Prioridade</StyledTableCell>
+                            <StyledTableCell align="center">Ação</StyledTableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {chamados.map((chamado) => (
+                            <StyledTableRow key={chamado.id}>
+                                <StyledTableCell component="th" scope="row">
+                                    {chamado.id}
+                                </StyledTableCell>
+                                <StyledTableCell align="left">{chamado.titulo}</StyledTableCell>
+                                <StyledTableCell align="left">
+                                    <Select
+                                        required                                        
+                                        defaultValue={chamado.status}
+                                        id="status"
+                                        variant="outlined"
+                                        onChange={e => setStatus(e.target.value)}>
+                                        <MenuItem value={'Aberto'}>Aberto</MenuItem>
+                                        <MenuItem value={'Em Andamento'}>Em Andamento</MenuItem>
+                                        <MenuItem value={'Finalizado'}>Finalizado</MenuItem>
+                                    </Select>
+                                </StyledTableCell>
+                                <StyledTableCell align="left">{chamado.categoria}</StyledTableCell>
+                                <StyledTableCell align="left">{chamado.email}</StyledTableCell>
+                                <StyledTableCell align="left">{chamado.prioridade}</StyledTableCell>
+                                <StyledTableCell align="center">
+                                    <Button
+                                        variant="contained"
+                                        color="secondary"
+                                        size="small"
+                                        className={classes.button}
+                                        startIcon={<DeleteIcon />}
+                                        onClick={() => handleDeleteChamado(chamado.id)}
                                     >Deletar</Button>
-                                <Button
-                                    variant="contained"
-                                    color="primary"
-                                    size="small"
-                                    className={classes.button}
-                                    startIcon={<SaveIcon />} 
-                                    onClick={() => handleUpdateChamado(chamado.id)}
+                                    <Button className={classes.submit}
+                                        variant="contained"
+                                        color="primary"
+                                        size="small"
+                                        type="submit"
+                                        className={classes.button}
+                                        onClick={() => handleUpdateChamado(chamado, status.value)}
+                                        startIcon={<SaveIcon />}
                                     >Salvar</Button>
-                            </StyledTableCell >
-                        </StyledTableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
-        <Footer />
+                                </StyledTableCell >
+                            </StyledTableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            <Footer />
         </Container>
     );
 }
