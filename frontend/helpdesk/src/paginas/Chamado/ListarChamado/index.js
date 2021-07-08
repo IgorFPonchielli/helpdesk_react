@@ -48,6 +48,7 @@ export default function ListarChamados() {
     const classes = useStyles();
 
     const [chamados, setChamados] = useState([]);
+    const [status, setStatus] = useState('');
     
     async function handleDeleteChamado(id) {
         try {
@@ -57,6 +58,11 @@ export default function ListarChamados() {
             alert('Erro ao deletar chamado');
         }
     }
+
+    async function handleStatus(status) {
+
+    }
+
 
     async function handleUpdateChamado(id, status) {
 
@@ -131,7 +137,7 @@ export default function ListarChamados() {
                                         size="small"
                                         type="submit"
                                         className={classes.button}
-                                        onClick={() => handleUpdateChamado(chamado.id, "status: teste")}
+                                        onClick={() => handleUpdateChamado(chamado.id, {"status": "")}
                                         startIcon={<SaveIcon />}
                                     >Salvar</Button>
                                 </StyledTableCell >
