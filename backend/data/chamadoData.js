@@ -8,8 +8,9 @@ exports.getChamados = function(){
     return database.query('select * from chamados');
 }
 
-exports.updateChamado = function(chamado){
-    return database.query("update chamados SET status = $1 where id = $2", [chamado.status, chamado.id]);
+exports.updateChamado = function(id, status){
+    console.log(status)
+    return database.query("update chamados SET status = $1 where id = $2", [status, id]);
 }
 
 exports.getChamadosDetail = function(){

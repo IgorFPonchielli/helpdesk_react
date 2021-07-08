@@ -12,8 +12,8 @@ exports.deleteChamado = function(chamadoID) {
     return chamadoData.deleteChamado(chamadoID);
 }
 
-exports.updateChamado = function(chamado) {
-    return chamadoData.updateChamado(chamado);
+exports.updateChamado = function(chamadoID, status) {
+    return chamadoData.updateChamado(chamadoID, status);
 }
 
 exports.getChamado = function(chamadoID){

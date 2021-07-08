@@ -25,8 +25,8 @@ router.delete('/chamado/:id', async function(req, res) {
 
 router.put('/chamado/:id', async function(req, res) {
     const chamado = req.body;
-    console.log(chamado)
-    await chamadoService.updateChamado(chamado);
+    console.log(chamado.status)
+    await chamadoService.updateChamado(req.params.id, chamado.status);
     return res.json([{message: 'status atualizado com sucesso'}])
 });
 

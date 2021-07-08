@@ -48,8 +48,7 @@ export default function ListarChamados() {
     const classes = useStyles();
 
     const [chamados, setChamados] = useState([]);
-    const [status, setStatus] = useState([]);
-
+    
     async function handleDeleteChamado(id) {
         try {
             await api.delete(`chamado/${id}`, {});
@@ -59,17 +58,13 @@ export default function ListarChamados() {
         }
     }
 
-    async function handleUpdateChamado(chamado, status) {
+    async function handleUpdateChamado(id, status) {
 
-        // const dados = {
-        //     status
-        // };
-
-        try {
-            console.log(chamado);
-            await api.put(`chamado/${chamado.id}`);
-            console.log(status);
-            alert("o id do chamado é " + chamado.id);
+        try {            
+            const response = await api.put(`chamado/${id}`, status);
+            console.log("DATA:" + response.data);
+            
+            alert("o id do chamado é " + id);
         } catch (error) {
             alert("Erro ao atualizar chamado " + error.message);
         }
@@ -110,7 +105,9 @@ export default function ListarChamados() {
                                         defaultValue={chamado.status}
                                         id="status"
                                         variant="outlined"
-                                        onChange={e => setStatus(e.target.value)}>
+                                        //value={status}
+                                        // onChange={() => handleUpdateChamado(chamado.id, "TESTE")}
+                                        >
                                         <MenuItem value={'Aberto'}>Aberto</MenuItem>
                                         <MenuItem value={'Em Andamento'}>Em Andamento</MenuItem>
                                         <MenuItem value={'Finalizado'}>Finalizado</MenuItem>
@@ -134,7 +131,7 @@ export default function ListarChamados() {
                                         size="small"
                                         type="submit"
                                         className={classes.button}
-                                        onClick={() => handleUpdateChamado(chamado, status.value)}
+                                        onClick={() => handleUpdateChamado(chamado.id, "status: teste")}
                                         startIcon={<SaveIcon />}
                                     >Salvar</Button>
                                 </StyledTableCell >

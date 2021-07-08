@@ -50,7 +50,7 @@ export default function EditarUsuario() {
     const [AREA, setArea] = useState('');
     const [LOCAL, setLocal] = useState('');
 
-    async function handleCadastro(e) {
+    async function handleAtualizar(e) {
         e.preventDefault();
 
         const dados = {
@@ -78,7 +78,7 @@ export default function EditarUsuario() {
             <CssBaseline />
             <Container maxWidth="md">
                 <h1>Atualizar Dados Cadastrais</h1>
-                <form onSubmit={handleCadastro}>
+                <form onSubmit={handleAtualizar}>
                     <Grid container spacing={2}>
                         <Grid item>
                             {/* <Grid item xs={12} sm={3} display="flex" justifyContent="flex-start"> */}
