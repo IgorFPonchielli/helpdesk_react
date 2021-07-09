@@ -137,7 +137,7 @@ export default function ListarChamados() {
                                         size="small"
                                         type="submit"
                                         className={classes.button}
-                                        onClick={() => handleUpdateChamado(chamado.id, {"status": "")}
+                                        //onClick={() => handleUpdateChamado(chamado.id, {"status": "")}
                                         startIcon={<SaveIcon />}
                                     >Salvar</Button>
                                 </StyledTableCell >

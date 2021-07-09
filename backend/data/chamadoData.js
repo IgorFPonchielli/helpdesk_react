@@ -15,9 +15,9 @@ exports.updateChamado = function(id, status){
 
 exports.getChamadosDetail = function(){
     return database.query(`select chamados.id, chamados.status, categorias.categoria, usuario.email, prioridade.descricao as prioridade, titulo, chamados.descricao from chamados
-                            inner join categorias on categorias.id = idcategoria
-                            inner join usuario on usuario.id = id_usuario
-                            inner join prioridade on prioridade.id = id_prioridade;`);
+                           inner join categorias on categorias.id = idcategoria
+                           inner join usuario on usuario.id = id_usuario
+                           inner join prioridade on prioridade.id = id_prioridade;`);
 }
 
 exports.deleteChamado = function (chamadoID) {

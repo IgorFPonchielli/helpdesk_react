@@ -45,7 +45,7 @@ export default function Login() {
 
         try {
             const response = await api.post('login', dados);
-            alert("Login valido! Status: " + response.status);
+            //alert("Login valido! Status: " + response.status);
             window.open("/home", "_self")
         } catch (error) {
             alert("Login Invalido " + error.message);
@@ -105,7 +105,7 @@ export default function Login() {
               </Link>
                         </Grid>
                         <Grid item>
-                            <Link href="#" variant="body2">
+                            <Link href="/usuario/cad" variant="body2">
                                 {"Não tem conta? Cadastre-se"}
                             </Link>
                         </Grid>

@@ -14,6 +14,7 @@ router.get("/usuario/:id",async function(req,res){
 });
 
 router.delete('/usuario/:id',async function(req,res){
+    await usuarioService.deleteUsuario(req.params.id);
    return res.json([{message:'registro excluido com sucesso'}]); 
 });
 

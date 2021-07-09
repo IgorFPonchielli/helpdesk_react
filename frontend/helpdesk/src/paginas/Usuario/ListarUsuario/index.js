@@ -83,10 +83,10 @@ export default function ListarUsuarios() {
                                 <StyledTableCell component="th" scope="row">
                                     {usuario.id}
                                 </StyledTableCell>
-                                <StyledTableCell align="left">{usuario.NOME}</StyledTableCell>
-                                <StyledTableCell align="left">{usuario.SOBRENOME}</StyledTableCell>
-                                <StyledTableCell align="left">{usuario.EMAIL}</StyledTableCell>
-                                <StyledTableCell align="left">{usuario.TELEFONE}</StyledTableCell>
+                                <StyledTableCell align="left">{usuario.nome}</StyledTableCell>
+                                <StyledTableCell align="left">{usuario.sobrenome}</StyledTableCell>
+                                <StyledTableCell align="left">{usuario.email}</StyledTableCell>
+                                <StyledTableCell align="left">{usuario.telefone}</StyledTableCell>
                                 <StyledTableCell align="left">{usuario.id_tpouser}</StyledTableCell>
                                 <StyledTableCell align="center">
                                     <Button

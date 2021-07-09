@@ -18,6 +18,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Box from '@material-ui/core/Box';
 import Header from '../../Main/Header';
 import Footer from '../../Main/Footer';
+import validator from 'validator';
+import { green } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -51,11 +53,22 @@ export default function CadastroUsuario() {
     const [NOME, setNome] = useState('');
     const [SOBRENOME, setSobrenome] = useState('');
     const [EMAIL, setEmail] = useState('');
+    const [erroEmail, setErroEmail] = useState('')
+    const validarEmail = (e) => {
+        var EMAIL = e.target.value
+        
+        if (validator.isEmail(EMAIL)) {
+            setErroEmail('E-mail válido!')
+        } else {
+            setErroEmail('Entre um E-mail válido!')
+        }
+    }
     const [SENHA, setSenha] = useState('');
     const [TELEFONE, setTelefone] = useState('');
     const [id_tpouser, setTipo] = useState('');
     const [AREA, setArea] = useState('');
     const [LOCAL, setLocal] = useState('');
+    const [IMAGEM, setImagem] = useState('');
 
     async function handleCadastro(e) {
         e.preventDefault();
@@ -68,7 +81,8 @@ export default function CadastroUsuario() {
             TELEFONE,
             id_tpouser,
             AREA,
-            LOCAL
+            LOCAL,
+            IMAGEM
         };
 
         try {
@@ -87,7 +101,7 @@ export default function CadastroUsuario() {
         <React.Fragment>
             <CssBaseline />
             <Container maxWidth="lg">
-                <Header title="Cadastrar Usuario"/> 
+                <Header title="Cadastrar Usuário" />
                 <form onSubmit={handleCadastro}>
                     <Grid container spacing={2}>
                         <Grid item>
@@ -102,14 +116,11 @@ export default function CadastroUsuario() {
                                             accept="image/*"
                                             className={classes.input}
                                             id="UploadImage"
-                                            type="file"
+                                            type="input"
                                             size="small"
+                                            value={IMAGEM}
+                                            onChange={e => setImagem(e.target.value)}
                                         />
-                                        <label htmlFor="UploadImage">
-                                            <Button justifyContent="center" variant="contained" color="primary" component="span">
-                                                Upload
-                                            </Button>
-                                        </label>
                                     </CardActions>
                                 </Box>
                             </Card>
@@ -155,9 +166,14 @@ export default function CadastroUsuario() {
                                         multiline
                                         variant="outlined"
                                         value={EMAIL}
+                                        onBlur={e => { validarEmail(e) }}
                                         onChange={e => setEmail(e.target.value)}
                                         margin="normal"
                                     />
+                                    <span style={{
+                                        fontWeight: 'bold',
+                                        color: 'red',
+                                    }}>{erroEmail}</span>
                                 </FormControl>
                             </Grid>
                             <Grid item xs={12} sm={6}>
@@ -180,7 +196,7 @@ export default function CadastroUsuario() {
 
                             <Grid item xs={12} sm={4}>
                                 <FormControl fullWidth variant="outlined" margin="normal" className={classes.margin}>
-                                    <InputLabel id="Tipo">Tipo de Usuario</InputLabel>
+                                    <InputLabel id="Tipo">Tipo de Usuário</InputLabel>
                                     <Select
                                         required
                                         labelId="Tipo"
@@ -226,7 +242,7 @@ export default function CadastroUsuario() {
                                     />
                                 </FormControl>
                             </Grid>
-
+                            
                             <Grid item xs={12} sm={12}>
                                 <FormControl fullWidth className={classes.margin}>
                                     <TextField
@@ -237,6 +253,20 @@ export default function CadastroUsuario() {
                                         variant="outlined"
                                         value={LOCAL}
                                         onChange={e => setLocal(e.target.value)}
+                                        margin="normal"
+                                    />
+                                </FormControl>
+                            </Grid>
+                            <Grid item xs={12} sm={12}>
+                                <FormControl fullWidth className={classes.margin}>
+                                    <TextField
+                                        id="Imagem"
+                                        label="Imagem"
+                                        placeholder="Insira o caminho da imagem aqui"
+                                        multiline
+                                        variant="outlined"
+                                        value={IMAGEM}
+                                        onChange={e => setImagem(e.target.value)}
                                         margin="normal"
                                     />
                                 </FormControl>
@@ -258,7 +288,7 @@ export default function CadastroUsuario() {
                     </Grid>
 
                 </form>
-                <Footer/>
+                <Footer />
             </Container>
         </React.Fragment>
     );

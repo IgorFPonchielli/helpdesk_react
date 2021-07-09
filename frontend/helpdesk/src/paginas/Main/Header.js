@@ -26,7 +26,8 @@ const useStyles = makeStyles((theme) => ({
 const sections = [
   { title: 'Abrir chamado', url: '/chamado/cad' },
   { title: 'Listar chamados', url: '/chamado/listar' },
-  { title: 'Cadastrar Usuario', url: '/usuario/cad' },
+  { title: 'Listar usuários', url: '/usuario/listar' },
+  { title: 'Cadastrar Usuário', url: '/usuario/cad' },
   { title: 'Home', url: '/home' },
 ];
 
@@ -48,7 +49,7 @@ export default function Header(props) {
         >
           {title}
         </Typography>
-        <Button variant="outlined" size="small">
+        <Button variant="outlined" size="small" href="/login">
           Log Out
         </Button>
       </Toolbar>
